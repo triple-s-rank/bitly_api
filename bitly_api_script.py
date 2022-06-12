@@ -38,13 +38,13 @@ def main():
     args = parser.parse_args()
     url = args.url
     parsed_url = urlparse(url)
-    serialized_url = parsed_url.netloc + parsed_url.path
+    url_without_protocol = parsed_url.netloc + parsed_url.path
 
     try:
-        if is_bitlink(serialized_url, headers):
-            print('По вашей ссылке прошли', count_clicks(serialized_url, headers), 'раз(а).')
+        if is_bitlink(url_without_protocol, headers):
+            print('По вашей ссылке прошли', count_clicks(url_without_protocol, headers), 'раз(а).')
         else:
-            bitlink = shorten_url(serialized_url, headers)
+            bitlink = shorten_url(url_without_protocol, headers)
             print('Битлинк', bitlink)
     except requests.HTTPError:
         print('Вы ввели неверную ссылку.')
