@@ -9,7 +9,7 @@ Python should be already installed.
 
 #### To install dependensies
 
-``` pip freeze -r requirements.txt ```
+``` pip install -r requirements.txt ```
 
 #### To get API token
 
