@@ -7,19 +7,19 @@ Python should be already installed.
 
 ``` git clone https://github.com/triple-s-rank/bitly_api_script.git ```
 
-#### To install dependensies
+#### To install dependencies
 
 ``` pip install -r requirements.txt ```
 
 #### To get API token
 
-To use script you should create account on [bitly](https://app.bitly.com/) and get your personal access token.
+To use script you should create account on [bitly](https://app.bitly.com/) and get your personal api access token.
 
 #### Setup environment
 
 Create .env file in script directory and place your token there:
 
-``` ACCESS_TOKEN='{YOUR TOKEN}' ```
+``` BITLY_ACCESS_TOKEN='{YOUR TOKEN}' ```
 
 ## Running script
 

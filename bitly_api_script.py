@@ -27,7 +27,7 @@ def is_bitlink(link, headers):
 def main():
     load_dotenv()
 
-    access_token = os.getenv("ACCESS_TOKEN")
+    access_token = os.getenv("BITLY_ACCESS_TOKEN")
     headers = {'Authorization': f'Bearer {access_token}'}
     parser = argparse.ArgumentParser(description="Transform url to bitly link and counts clicks on it.")
     parser.add_argument(
