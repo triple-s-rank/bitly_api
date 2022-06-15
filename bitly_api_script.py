@@ -11,7 +11,8 @@ def shorten_url(link, headers):
     response = requests.post(
         url='https://api-ssl.bitly.com/v4/shorten',
         headers=headers,
-        json=data)
+        json=data
+    )
     response.raise_for_status()
     return response.json()['link']
 
@@ -55,7 +56,8 @@ def main():
             print(
                 'По вашей ссылке прошли',
                 count_clicks(url_without_protocol, headers),
-                'раз(а).')
+                'раз(а).'
+            )
         else:
             bitlink = shorten_url(url_without_protocol, headers)
             print('Битлинк', bitlink)
