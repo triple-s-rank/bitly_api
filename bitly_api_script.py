@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 
 def shorten_url(link, headers):
-    data = {'long_url': f'http://{link}'}
+    data = {'long_url': f'{link}'}
     response = requests.post(
         url='https://api-ssl.bitly.com/v4/shorten',
         headers=headers,
