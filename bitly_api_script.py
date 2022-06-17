@@ -29,7 +29,7 @@ def is_bitlink(link, headers):
     response = requests.get(
         url=f'https://api-ssl.bitly.com/v4/bitlinks/{link}',
         headers=headers
-        )
+    )
     return response.ok
 
 
@@ -40,17 +40,19 @@ def main():
     headers = {'Authorization': f'Bearer {access_token}'}
     parser = argparse.ArgumentParser(
         description="Transform url to bitly link and counts clicks on it."
-        )
+    )
     parser.add_argument(
         "url",
         type=str,
         help="use 'python main.py {url}'"
-        )
+    )
     args = parser.parse_args()
     url = args.url
     parsed_url = urlparse(url)
+    if not parsed_url.scheme:
+        parsed_url = parsed_url._replace(scheme='http')
+    full_url = parsed_url.geturl()
     url_without_protocol = parsed_url.netloc + parsed_url.path
-
     try:
         if is_bitlink(url_without_protocol, headers):
             print(
@@ -59,7 +61,7 @@ def main():
                 'раз(а).'
             )
         else:
-            bitlink = shorten_url(url_without_protocol, headers)
+            bitlink = shorten_url(full_url, headers)
             print('Битлинк', bitlink)
     except requests.HTTPError:
         print('Вы ввели неверную ссылку.')
