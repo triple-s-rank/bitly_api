@@ -40,7 +40,7 @@ def main():
     access_token = os.getenv("BITLY_ACCESS_TOKEN")
     headers = {'Authorization': f'Bearer {access_token}'}
     parser = argparse.ArgumentParser(
-        description="Transform url to bitly link and counts clicks on it."
+        description="Transform url to bitly link and counts clicks on it. Enter url in format: http://example.com "
     )
     parser.add_argument(
         "url",
@@ -51,8 +51,9 @@ def main():
     url = args.url
     parsed_url = urlparse(url)
     if not parsed_url.scheme:
-        parsed_url = parsed_url._replace(scheme='http')
-    full_url = parsed_url.geturl()
+        full_url = f'http://{parsed_url.geturl()}'
+    else:
+        full_url = parsed_url.geturl()
     url_without_protocol = parsed_url.netloc + parsed_url.path
     try:
         if is_bitlink(url_without_protocol, headers):
