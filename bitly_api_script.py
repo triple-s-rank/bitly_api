@@ -48,12 +48,8 @@ def main():
         help="use 'python main.py {url}'"
     )
     args = parser.parse_args()
-    url = args.url
-    parsed_url = urlparse(url)
-    if not parsed_url.scheme:
-        full_url = f'http://{parsed_url.geturl()}'
-    else:
-        full_url = parsed_url.geturl()
+    parsed_url = urlparse(args.url)
+    full_url = parsed_url.geturl()
     url_without_protocol = f'{parsed_url.netloc}{parsed_url.path}'
     try:
         if is_bitlink(url_without_protocol, headers):
@@ -66,7 +62,7 @@ def main():
             bitlink = shorten_url(full_url, headers)
             print('Битлинк', bitlink)
     except requests.HTTPError:
-        print('Вы ввели неверную ссылку.')
+        print('Вы ввели неверную ссылку. Введите ссылку в формате: http://example.com или ваш битлинк.')
 
 
 if __name__ == '__main__':
