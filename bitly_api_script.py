@@ -54,7 +54,7 @@ def main():
         full_url = f'http://{parsed_url.geturl()}'
     else:
         full_url = parsed_url.geturl()
-    url_without_protocol = parsed_url.netloc + parsed_url.path
+    url_without_protocol = f'{parsed_url.netloc}{parsed_url.path}'
     try:
         if is_bitlink(url_without_protocol, headers):
             print(
